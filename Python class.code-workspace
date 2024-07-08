@@ -5,3 +5,16 @@
 		}
 	]
 }
+
+
+
+name = input("please enter your name: ")
+lower_name = name.lower()
+capital_name = name.capitalize()
+
+if name == lower_name:
+    print("first letter of name is not captitalise ")
+elif name == capital_name:
+    print("first letter of name is capitalized")
+else:
+    print("please input your name correctly")
