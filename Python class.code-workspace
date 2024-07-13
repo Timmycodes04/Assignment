@@ -1,20 +1,22 @@
-{
-	"folders": [
-		{
-			"path": "."
-		}
-	]
-}
+import os
+from email.message import EmailMessage
+import ssl
+import smtplib
+email_sender = "alani.timi@gmail.com" 
+email_password = "qjjb sjmc eekj xvzh"
+email_reciever = "alani.sunday@gmail.com"
 
+subject = "testing my e-mail code"
+body = """Trying to see if my e-mail codde sends to the receiver"""
 
+em = EmailMessage()
+em["From"] = email_sender
+em["To"] = email_reciever
+em["Subject"] = subject
+em.set_content(body)
 
-name = input("please enter your name: ")
-lower_name = name.lower()
-capital_name = name.capitalize()
+context = ssl.create_default_context()
 
-if name == lower_name:
-    print("first letter of name is not captitalise ")
-elif name == capital_name:
-    print("first letter of name is capitalized")
-else:
-    print("please input your name correctly")
+with smtplib.SMTP_SSL("smpt.gmail.com", 465, context=context) as smpt:
+    smpt.login(email_sender, email_password)
+    smpt.sendmail(email_sender, email_reciever, em.as_sting())
